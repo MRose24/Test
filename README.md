@@ -250,22 +250,85 @@
             <div class="muted small" style="margin-top:8px">กดไอคอนสีสันด้านบนเพื่อแสดงกราฟ (จะใช้โหมดและตัวเลือกปัจจุบัน)</div>
           </div>
             <!-- Student list with add/remove star controls (separate function) -->
-          <div class="card small">
-            <h3>2) จัดการดาวให้รายบุคคล</h3>
-            <div class="row">
-              <label>เลือกนักเรียน:</label>
-              <select id="teacherStudentSelect"></select>
+           <div class="container">
+        <h1>✨ ระบบจัดการดาวนักเรียน</h1>
+        <div class="controls">
+            <select id="studentSelector" onchange="updateStarDisplay()">
+                <option value="" disabled selected>--- เลือกชื่อนักเรียน ---</option>
+                <option value="studentA">นักเรียนก้อนเมฆ</option>
+                <option value="studentB">นักเรียนท้องฟ้า</option>
+                <option value="studentC">นักเรียนเม็ดฝน</option>   
+            </select>
+        </div>
+
+        <div class="controls">
+            <button class="add-btn" onclick="changeStars(1)">➕ เพิ่ม 1 ดาว</button>
+            <button class="minus-btn" onclick="changeStars(-1)">➖ ลด 1 ดาว</button>
+        </div>
+
+        <p>
+            **ดาวปัจจุบันของนักเรียนที่เลือก:**
+            <div id="starCountDisplay" class="star-display">
+                โปรดเลือกนักเรียน
             </div>
-            <div class="row">
-              <label>จำนวนดาว (ใส่ + หรือ -):</label>
-              <input id="starDelta" type="number" value="1" />
-            </div>
-            <div class="row">
-              <button id="btnAdjustStars">บันทึกการให้/ลดดาว</button>
-            </div>
-            <h4>ประวัติดาวของนักเรียน</h4>
-            <ul id="teacherStarHistory" class="list"></ul>
-          </div>
+        </p>
+    </div>
+
+    <script>
+        // JavaScript สำหรับการจัดการตรรกะ
+
+        // ข้อมูลจำลอง: เก็บจำนวนดาวของนักเรียนแต่ละคน (เริ่มต้นที่ 5 ดาว)
+        const studentStars = {
+            studentA: 5,
+            studentB: 7,
+            studentC: 3,
+        };
+
+        /**
+         * ฟังก์ชันสำหรับอัปเดตการแสดงผลจำนวนดาว
+         */
+        function updateStarDisplay() {
+            const selector = document.getElementById('studentSelector');
+            const display = document.getElementById('starCountDisplay');
+            const selectedStudent = selector.value; // ดึงค่า value ของนักเรียนที่ถูกเลือก
+
+            if (selectedStudent in studentStars) {
+                const count = studentStars[selectedStudent];
+                // แสดงจำนวนดาวและไอคอนดาว
+                display.innerHTML = `${count} <span class="star-icon">★</span>`;
+            } else {
+                display.innerHTML = "โปรดเลือกนักเรียน";
+            }
+        }
+
+        /**
+         * ฟังก์ชันสำหรับเพิ่มหรือลดจำนวนดาว
+         * @param {number} amount - จำนวนที่ต้องการเพิ่ม (1) หรือลด (-1)
+         */
+        function changeStars(amount) {
+            const selector = document.getElementById('studentSelector');
+            const selectedStudent = selector.value;
+
+            if (selectedStudent === "") {
+                alert("กรุณาเลือกชื่อนักเรียนก่อนครับ/ค่ะ!");
+                return;
+            }
+
+            // เพิ่ม/ลด จำนวนดาวใน object
+            studentStars[selectedStudent] += amount;
+
+            // ตรวจสอบไม่ให้จำนวนดาวติดลบ
+            if (studentStars[selectedStudent] < 0) {
+                studentStars[selectedStudent] = 0;
+            }
+
+            // เรียกฟังก์ชันเพื่ออัปเดตการแสดงผลบนหน้าจอ
+            updateStarDisplay();
+        }
+
+        // เรียกฟังก์ชันครั้งแรกเพื่อตั้งค่าการแสดงผลเมื่อโหลดหน้า
+        document.addEventListener('DOMContentLoaded', updateStarDisplay);
+    </script>
 
           <!-- Report to advisor card (no star adjust here) -->
           <div class="card" style="margin-top:12px">
