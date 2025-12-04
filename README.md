@@ -255,6 +255,8 @@
               <div><strong>รายชื่อนักเรียน</strong></div>
               <div><input id="searchStudent" placeholder="ค้นหาชื่อนักเรียน" style="padding:8px;border-radius:8px;border:1px solid rgba(124,58,237,0.06)" /></div>
             </div>
+              <button id="incStarBtn" class="btn-ghost">เพิ่มดาว +1</button>
+              <button id="decStarBtn" class="btn-ghost">ลดดาว −1</button>
             <div id="studentsList" class="list" style="margin-top:10px"></div>
           </div>
 
