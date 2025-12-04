@@ -257,6 +257,7 @@
             </div>
               <button id="incStarBtn" class="btn-ghost">เพิ่มดาว +1</button>
               <button id="decStarBtn" class="btn-ghost">ลดดาว −1</button>
+              <div id="starAdjustInfo" class="muted small" style="margin-left:6px"></div>
             <div id="studentsList" class="list" style="margin-top:10px"></div>
           </div>
 
