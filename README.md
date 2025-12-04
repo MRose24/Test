@@ -250,15 +250,21 @@
             <div class="muted small" style="margin-top:8px">กดไอคอนสีสันด้านบนเพื่อแสดงกราฟ (จะใช้โหมดและตัวเลือกปัจจุบัน)</div>
           </div>
             <!-- Student list with add/remove star controls (separate function) -->
-          <div class="card" style="margin-top:12px">
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <div><strong>รายชื่อนักเรียน</strong></div>
-              <div><input id="searchStudent" placeholder="ค้นหาชื่อนักเรียน" style="padding:8px;border-radius:8px;border:1px solid rgba(124,58,237,0.06)" /></div>
+          <div class="card small">
+            <h3>2) จัดการดาวให้รายบุคคล</h3>
+            <div class="row">
+              <label>เลือกนักเรียน:</label>
+              <select id="teacherStudentSelect"></select>
             </div>
-              <button id="incStarBtn" class="btn-ghost">เพิ่มดาว +1</button>
-              <button id="decStarBtn" class="btn-ghost">ลดดาว −1</button>
-              <div id="starAdjustInfo" class="muted small" style="margin-left:6px"></div>
-            <div id="studentsList" class="list" style="margin-top:10px"></div>
+            <div class="row">
+              <label>จำนวนดาว (ใส่ + หรือ -):</label>
+              <input id="starDelta" type="number" value="1" />
+            </div>
+            <div class="row">
+              <button id="btnAdjustStars">บันทึกการให้/ลดดาว</button>
+            </div>
+            <h4>ประวัติดาวของนักเรียน</h4>
+            <ul id="teacherStarHistory" class="list"></ul>
           </div>
 
           <!-- Report to advisor card (no star adjust here) -->
