@@ -328,7 +328,7 @@
 
         // เรียกฟังก์ชันครั้งแรกเพื่อตั้งค่าการแสดงผลเมื่อโหลดหน้า
         document.addEventListener('DOMContentLoaded', updateStarDisplay);
-    </script>
+    </div>
 
           <!-- Report to advisor card (no star adjust here) -->
           <div class="card" style="margin-top:12px">
